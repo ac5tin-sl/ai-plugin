@@ -1,6 +1,6 @@
 {
   "name": "shopline-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Use SHOPLINE Admin APIs through Agent Skills and the public SHOPLINE MCP server.",
   "author": {
     "name": "SHOPLINE",

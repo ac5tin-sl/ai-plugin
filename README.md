@@ -1,6 +1,6 @@
 # SHOPLINE Agent Plugin
 
-A portable Agent Plugins 1.0.0 package for SHOPLINE Admin APIs. It provides two Agent Skills and one public SHOPLINE MCP server.
+A portable Agent Plugins 1.0.0 package for SHOPLINE Admin APIs. It provides three Agent Skills and one public SHOPLINE MCP server.
 
 ## Package tree
 
@@ -17,11 +17,13 @@ A portable Agent Plugins 1.0.0 package for SHOPLINE Admin APIs. It provides two 
 ├── plugin.json
 └── skills/
     ├── shopline-meta-endpoints/SKILL.md
+    ├── shopline-release-smoke-test/SKILL.md
     └── shopline-response-fields/SKILL.md
 ```
 
 ## Operation
 
+- Explicitly invoke `shopline-release-smoke-test` for the harmless example response `SHOPLINE release smoke test: OK`. It uses no tools or APIs and does not verify connectivity or release success.
 - Use a dedicated native SHOPLINE tool first.
 - Use `shopline_search_mcp_endpoints` → `shopline_get_mcp_endpoint` → `shopline_execute_mcp_endpoint` only when no dedicated tool matches.
 - Read the inspected schema before a meta call. Confirm writes or destructive calls when HITL requires it, and never bypass a confirmation challenge.
@@ -64,11 +66,11 @@ Each client has its own installation. An installation in one client does not app
 
 From this repository:
 
-1. Validate both skills with `skills-ref validate skills/<skill-name>`.
+1. Validate all three skills with `skills-ref validate skills/<skill-name>`.
 2. Validate the Claude package with `claude plugin validate .`.
 3. Parse all JSON manifests with `python3 -m json.tool`.
 4. Confirm each marketplace exposes exactly one `shopline-plugin` entry.
-5. Install in each available client, confirm the two namespaced skills and the SHOPLINE MCP tools, then complete OAuth.
+5. Install in each available client, confirm the three namespaced skills and the SHOPLINE MCP tools, then complete OAuth.
 6. Test one native read, the meta search → inspect → execute fallback, and minimal `response_fields` including a nested or array-relative path.
 7. Test an unsupported projection without `response_fields`.
 8. Start a write or destructive meta call, confirm that HITL stops execution, and cancel without changing data.
